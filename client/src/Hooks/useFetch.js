@@ -14,7 +14,7 @@ export default function UseFetch(url) {
       }
     };
     getData();
-  }, []);
+  }, [url]);
 
   return data;
 }

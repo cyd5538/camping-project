@@ -69,7 +69,7 @@ const Login = () => {
         <div className="form">
           <input placeholder="ID를 입력해주세요" />
           <input placeholder="비밀번호를 입력해주세요" type="password" />
-          <button>Login</button>
+          <button>로그인</button>
         </div>
       </div>
     </LoginStyled>

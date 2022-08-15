@@ -51,12 +51,12 @@ const MainStyled = styled.div`
     }
 `
 
-const MainSearch = () => {
+const MainSearch = ({handleChange, search}) => {
   return (
     <MainStyled>
       <h2> 캠핑장을 검색해 주세요 !</h2>
       <div className="search_input">
-        <input type="text" placeholder="캠핑장 검색"/>
+        <input type="text" placeholder="캠핑장 검색" onChange={handleChange} value={search}/>
         <div><BsSearch /></div>
       </div>
     </MainStyled>
