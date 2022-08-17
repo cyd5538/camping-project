@@ -3,6 +3,7 @@ import axios from "axios";
 
 export default function UseFetch(url) {
   const [data, setData] = useState([]);
+  
 
   useEffect(() => {
     const getData = async () => {

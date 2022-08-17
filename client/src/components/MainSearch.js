@@ -4,16 +4,17 @@ import styled from 'styled-components';
 
 const MainStyled = styled.div`
     padding: 1rem;
-    width : 60%;
+    width : 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 2rem;
     position: absolute;
-    top: 40%;
+    top: 300px;
     left: 50%;
-    z-index: 100;
+    z-index: 200;
+   
     transform: translate(-50%,-50%);
     
     h2{
@@ -33,6 +34,7 @@ const MainStyled = styled.div`
             border: none;
             font-size: 1.5rem;
             padding-left: 2rem;
+            border: 1px solid #000;
         }
         div{
             position: absolute;
@@ -54,7 +56,7 @@ const MainStyled = styled.div`
 const MainSearch = ({handleChange, search}) => {
   return (
     <MainStyled>
-      <h2> 캠핑장을 검색해 주세요 !</h2>
+      <h2> 캠핑장을 검색해 주세요 !!</h2>
       <div className="search_input">
         <input type="text" placeholder="캠핑장 검색" onChange={handleChange} value={search}/>
         <div><BsSearch /></div>

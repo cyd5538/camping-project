@@ -7,24 +7,25 @@ import "swiper/css";
 import "swiper/css/navigation";
 import styled from "styled-components";
 import ImageReady from "../assets/imageready.jpg";
+import Spinner from "../reCylce/spinner";
+
+
 
 const NearbyStyle = styled.div`
   max-width: 1100px;
   width: 100%;
-  margin : 0 auto;
+  margin: 0 auto;
 
-  .sub_title{
+  .sub_title {
     font-size: 1.3rem;
     color: purple;
     font-weight: bold;
     margin-bottom: 10px;
   }
 
-  h2{
+  h2 {
     margin-bottom: 30px;
   }
-
-
 
   img {
     max-width: 350px;
@@ -32,18 +33,26 @@ const NearbyStyle = styled.div`
     height: 200px;
     transition: all 0.3s ease-in;
   }
-  img:hover{
+  img:hover {
     transform: scale(1.1);
   }
 
-  .data_text{
-    margin-top : 20px;
+  .data_text {
+    margin-top: 20px;
     div:first-child {
       margin-bottom: 10px;
     }
     div:last-child {
-      font-weight:bold;
+      font-weight: bold;
     }
+  }
+  .spin{
+    width: 100%;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
   }
 `;
 
@@ -78,24 +87,35 @@ const Naearby = () => {
         spaceBetween={30}
         navigation
       >
-        {datas?.map((data) => (
-          <SwiperSlide key={data.contentId} className="card">
-            <>
-              <div className="data_img">
-                <img
-                  src={
-                    data.firstImageUrl === "" ? ImageReady : data.firstImageUrl
-                  }
-                  alt={data.facltNm}
-                />
-              </div>
-              <div className="data_text">
-                <div>{data.doNm} {data.addr1}</div>
-                <div>{data.facltNm}</div>
-              </div>
-            </>
-          </SwiperSlide>
-        ))}
+        {datas.length < 1 ? (
+          <Spinner />
+        ) : (
+          <>
+            {" "}
+            {datas?.map((data) => (
+              <SwiperSlide key={data.contentId} className="card">
+                <>
+                  <div className="data_img">
+                    <img
+                      src={
+                        data.firstImageUrl === ""
+                          ? ImageReady
+                          : data.firstImageUrl
+                      }
+                      alt={data.facltNm}
+                    />
+                  </div>
+                  <div className="data_text">
+                    <div>
+                      {data.doNm} {data.addr1}
+                    </div>
+                    <div>{data.facltNm}</div>
+                  </div>
+                </>
+              </SwiperSlide>
+            ))}
+          </>
+        )}
       </Swiper>
     </NearbyStyle>
   );

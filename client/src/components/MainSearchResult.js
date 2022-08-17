@@ -1,34 +1,54 @@
-import React from 'react'
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const MainSearchResultStyled = styled.div`
-    padding: 1rem;
-    width : 60%;
+  .search_result {
+    color: black;
+    background-color: white;
+    width: 460px;
+    height: 100%;
+    max-height: 150px;
+    overflow-y: scroll;
     display: flex;
+    z-index: 50;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 10px;
     position: absolute;
-    top: 60%;
+    top: 410px;
+    padding-top: 30px;
     left: 50%;
     z-index: 100;
-    transform: translate(-50%,-50%);
-`
+    transform: translate(-50%, -50%);
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: #2f3542;
+    }
+    ::-webkit-scrollbar-track {
+      background-color: grey;
+    }
+  }
+  .none{
+    display : none;
+  }
+`;
 
-
-const MainSearchResult = ({searchData}) => {
-    
+const MainSearchResult = ({ searchData, searchBoolean }) => {
+  console.log(searchData)
   return (
     <MainSearchResultStyled>
-      {/* {searchData?.map((data) => (
-        <div>
-
-            {data.facltNm}
-        </div>
-      ))} */}
+      <div className={searchData ===  "" || searchData === undefined ? "none" : "search_result"}>
+        {searchData === "" ? (
+          <div>No data</div>
+        ) : (
+          searchData?.map((data) => <div key={data.facltNm}>{data.facltNm}</div>)
+        )}
+      </div>
     </MainSearchResultStyled>
-  )
-}
+  );
+};
 
-export default MainSearchResult
+export default MainSearchResult;

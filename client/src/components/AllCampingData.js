@@ -3,6 +3,7 @@ import UseFetch from "../Hooks/useFetch";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import styled from "styled-components";
+import Spinner from "../reCylce/spinner";
 
 const AllCampingStyle = styled.div`
   max-width: 1100px;
@@ -44,31 +45,39 @@ const AllCampingData = () => {
     `http://api.visitkorea.or.kr/openapi/service/rest/GoCamping/basedList?ServiceKey=${SERVER_KEY}&numOfRows=9&pageNo=${page}&MobileOS=ETC&MobileApp=TestApp&_type=json`
   );
 
-
-
-  function handlePagination (event) {
-    setPage(event.currentTarget.textContent)
+  function handlePagination(event) {
+    setPage(event.currentTarget.textContent);
   }
-
 
   return (
     <AllCampingStyle>
       <h2>모든 캠핑장 알아보기 🖐</h2>
-      <div className="allcamp">
-        {days.map((day) => (
-          <div className="allcamp_card" key={day.contentId}>
-            <img src={day.firstImageUrl} alt="" />
-            <div>{day.facltNm}</div>
-            <div>{day.induty}</div>
-            <div>{day.lineIntro}</div>
+      {days.length < 1 ? (
+        <Spinner />
+      ) : (
+        <>
+          {" "}
+          <div className="allcamp">
+            {days.map((day) => (
+              <div className="allcamp_card" key={day.contentId}>
+                <img src={day.firstImageUrl} alt="" />
+                <div>{day.facltNm}</div>
+                <div>{day.induty}</div>
+                <div>{day.lineIntro}</div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      <div className="pagenation">
-        <Stack spacing={2}>
-          <Pagination count={3430 / 10} color="primary" onChange={handlePagination} />
-        </Stack>
-      </div>
+          <div className="pagenation">
+            <Stack spacing={2}>
+              <Pagination
+                count={3430 / 10}
+                color="primary"
+                onChange={handlePagination}
+              />
+            </Stack>
+          </div>
+        </>
+      )}
     </AllCampingStyle>
   );
 };
