@@ -4,7 +4,8 @@ import {Route, Routes} from 'react-router-dom'
 import Join from './pages/Join';
 import Login from './pages/Login';
 import Home from './pages/Home';
-import Spinner from './reCylce/spinner';
+import Detailpage from './pages/Detailpage';
+
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/:id" element={<Detailpage />} />
         <Route path="/join" element={<Join />} />
       </Routes>
 

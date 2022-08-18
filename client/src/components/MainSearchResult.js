@@ -14,10 +14,9 @@ const MainSearchResultStyled = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;
     position: absolute;
     top: 410px;
-    padding-top: 30px;
+    padding-top: 100px;
     left: 50%;
     z-index: 100;
     transform: translate(-50%, -50%);
@@ -34,6 +33,15 @@ const MainSearchResultStyled = styled.div`
   .none{
     display : none;
   }
+  .search_list{
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+  }
+  .search_list:hover{
+    background-color: #eee;
+  }
 `;
 
 const MainSearchResult = ({ searchData, searchBoolean }) => {
@@ -44,7 +52,7 @@ const MainSearchResult = ({ searchData, searchBoolean }) => {
         {searchData === "" ? (
           <div>No data</div>
         ) : (
-          searchData?.map((data) => <div key={data.facltNm}>{data.facltNm}</div>)
+          searchData?.map((data) => <div className="search_list" key={data.facltNm}>{data.facltNm}</div>)
         )}
       </div>
     </MainSearchResultStyled>

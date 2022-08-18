@@ -34,7 +34,6 @@ const MainStyled = styled.div`
             border: none;
             font-size: 1.5rem;
             padding-left: 2rem;
-            border: 1px solid #000;
         }
         div{
             position: absolute;

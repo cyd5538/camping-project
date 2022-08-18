@@ -8,7 +8,7 @@ import "swiper/css/navigation";
 import styled from "styled-components";
 import ImageReady from "../assets/imageready.jpg";
 import Spinner from "../reCylce/spinner";
-
+import {Link} from 'react-router-dom';
 
 
 const NearbyStyle = styled.div`
@@ -93,8 +93,10 @@ const Naearby = () => {
           <>
             {" "}
             {datas?.map((data) => (
+              
               <SwiperSlide key={data.contentId} className="card">
                 <>
+                <Link to={`/${data.contentId}`}>
                   <div className="data_img">
                     <img
                       src={
@@ -111,6 +113,7 @@ const Naearby = () => {
                     </div>
                     <div>{data.facltNm}</div>
                   </div>
+                  </Link>
                 </>
               </SwiperSlide>
             ))}
