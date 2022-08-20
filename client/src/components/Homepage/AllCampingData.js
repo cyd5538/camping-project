@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import UseFetch from "../Hooks/useFetch";
+import UseFetch from "../../Hooks/useFetch";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import styled from "styled-components";
-import Spinner from "../reCylce/spinner";
+import Spinner from "../../reCylce/spinner";
 
 const AllCampingStyle = styled.div`
   max-width: 1100px;

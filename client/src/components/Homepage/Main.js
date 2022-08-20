@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import UseFetch from "../Hooks/useFetch";
+import UseFetch from "../../Hooks/useFetch";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay } from "swiper";
 import "swiper/css";
@@ -7,7 +7,7 @@ import styled from "styled-components";
 import MainSearch from "./MainSearch";
 import axios from "axios";
 import MainSearchResult from "./MainSearchResult";
-import Spinner from "../reCylce/spinner";
+import Spinner from "../../reCylce/spinner";
 
 SwiperCore.use([Autoplay]);
 

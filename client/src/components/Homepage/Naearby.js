@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
-import useGeoLocation from "../Hooks/useGeoLocation";
+import useGeoLocation from "../../Hooks/useGeoLocation";
 import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import styled from "styled-components";
-import ImageReady from "../assets/imageready.jpg";
-import Spinner from "../reCylce/spinner";
+import ImageReady from "../../assets/imageready.jpg";
+import Spinner from "../../reCylce/spinner";
 import {Link} from 'react-router-dom';
 
 
