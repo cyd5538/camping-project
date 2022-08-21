@@ -28,17 +28,30 @@ const NearbyStyle = styled.div`
   }
 
   img {
-    max-width: 350px;
-    width: 100%;
+    width: 250px;
     height: 200px;
     transition: all 0.3s ease-in;
   }
   img:hover {
     transform: scale(1.1);
   }
+  .data_img{
+    position: relative;
+    div{
+      position: absolute;
+      top: 80%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      text-align: center;
+      color:black;
+      width: 100%;
+      background-color : rgba(200,255,255,0.7);
+    }
+  }
+  .d
 
-  .data_text {
-    margin-top: 20px;
+  .data_text {  
+    display: flex;
     div:first-child {
       margin-bottom: 10px;
     }
@@ -54,6 +67,27 @@ const NearbyStyle = styled.div`
     align-items: center;
     display: flex;
   }
+  
+  @media screen and (max-width:1000px) {
+    img{
+      width: 200px;
+      height: 180px;
+    }
+  }
+  @media screen and (max-width:800px) {
+    img{
+      width: 150px;
+      height: 130px;
+    }
+  }
+  @media screen and (max-width:600px) {
+    img{
+      width: 100px;
+      height: 70px;
+    }
+  }
+
+
 `;
 
 const Naearby = () => {
@@ -72,7 +106,7 @@ const Naearby = () => {
       console.log(datas);
     };
     getData();
-  }, [y, x]);
+  }, [x,y]);
 
   SwiperCore.use([Autoplay, Navigation]);
 
@@ -106,11 +140,6 @@ const Naearby = () => {
                       }
                       alt={data.facltNm}
                     />
-                  </div>
-                  <div className="data_text">
-                    <div>
-                      {data.doNm} {data.addr1}
-                    </div>
                     <div>{data.facltNm}</div>
                   </div>
                   </Link>

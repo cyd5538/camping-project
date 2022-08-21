@@ -5,6 +5,7 @@ import Join from './pages/Join';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Detailpage from './pages/Detailpage';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -22,7 +23,9 @@ function App() {
         <Route path="/:id" element={<Detailpage />} />
         <Route path="/join" element={<Join />} />
       </Routes>
-
+      <>
+        <Footer />
+      </>
     </>
   );
 }

@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import ImageSlide from '../components/Detail/ImageSlide'
 import styeld from 'styled-components';
 import DetailText from '../components/Detail/DetailText';
+import DetailMap from '../components/Detail/DetailMap';
 
 const DetailpageStyle = styeld.div`
   max-width: 1100px;
@@ -23,7 +24,7 @@ const Detailpage = () => {
     `http://api.visitkorea.or.kr/openapi/service/rest/GoCamping/imageList?ServiceKey=${SERVER_KEY}&MobileOS=ETC&MobileApp=AppTest&contentId=${id}&_type=json`
   );
 
-    
+  
 
   // id 값이 같은거면 필터
   let detailFilter = days.filter((a) => a.contentId === id)
@@ -33,6 +34,7 @@ const Detailpage = () => {
     <DetailpageStyle>
       <ImageSlide img={image}/>
       <DetailText data={detailFilter}/>
+      <DetailMap data={detailFilter}/>
     </DetailpageStyle>
   )
 }

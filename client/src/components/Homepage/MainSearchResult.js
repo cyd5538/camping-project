@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const MainSearchResultStyled = styled.div`
   .search_result {
     color: black;
-    background-color: white;
+    background-color: #222;
     width: 460px;
     height: 100%;
     max-height: 150px;
@@ -30,29 +31,39 @@ const MainSearchResultStyled = styled.div`
       background-color: grey;
     }
   }
-  .none{
-    display : none;
+  .none {
+    display: none;
   }
-  .search_list{
+  .search_list {
     width: 100%;
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 20px;
   }
-  .search_list:hover{
-    background-color: #eee;
+  .search_list:hover {
+    background-color: black;
   }
 `;
 
 const MainSearchResult = ({ searchData, searchBoolean }) => {
-  console.log(searchData)
+  console.log(searchData);
   return (
     <MainSearchResultStyled>
-      <div className={searchData ===  "" || searchData === undefined ? "none" : "search_result"}>
+      <div
+        className={
+          searchData === "" || searchData === undefined
+            ? "none"
+            : "search_result"
+        }
+      >
         {searchData === "" ? (
           <div>No data</div>
         ) : (
-          searchData?.map((data) => <div className="search_list" key={data.facltNm}>{data.facltNm}</div>)
+          searchData?.map((data) => (
+            <div className="search_list" key={data.facltNm}>
+              <Link to={`/${data.contentId}`}>{data.facltNm}</Link>
+            </div>
+          ))
         )}
       </div>
     </MainSearchResultStyled>

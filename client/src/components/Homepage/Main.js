@@ -66,7 +66,6 @@ const Main = () => {
     getSearchData();
   }, [search]);
 
-console.log(days);
 
   return (
     <MainStyled>

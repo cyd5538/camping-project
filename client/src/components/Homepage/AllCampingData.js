@@ -4,6 +4,7 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import styled from "styled-components";
 import Spinner from "../../reCylce/spinner";
+import { Link } from "react-router-dom";
 
 const AllCampingStyle = styled.div`
   max-width: 1100px;
@@ -60,7 +61,9 @@ const AllCampingData = () => {
           <div className="allcamp">
             {days.map((day) => (
               <div className="allcamp_card" key={day.contentId}>
-                <img src={day.firstImageUrl} alt="" />
+                <Link to={`/${day.contentId}`}>
+                  <img src={day.firstImageUrl} alt="" />
+                </Link>
                 <div>{day.facltNm}</div>
                 <div>{day.induty}</div>
                 <div>{day.lineIntro}</div>

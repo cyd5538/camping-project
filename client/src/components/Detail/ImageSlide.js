@@ -5,13 +5,13 @@ import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import Spinner from "../../reCylce/spinner";
+
 
 SwiperCore.use([Navigation, Pagination, Autoplay]);
 
 const ImageSlidestyled = styled.div`
   width: 90%;
-  
+
   margin: 30px auto;
   img {
     width: 100%;
@@ -19,7 +19,7 @@ const ImageSlidestyled = styled.div`
     height: 100%;
     object-fit: cover;
   }
-  .loader{
+  .loader {
     margin-top: 200px;
     display: flex;
     align-items: center;
@@ -30,24 +30,27 @@ const ImageSlidestyled = styled.div`
 const ImageSlide = (img) => {
   return (
     <ImageSlidestyled>
-      {img.img.length < 1 ? (
-        <Spinner />
+      {img === undefined ? (
+        <div>NO data</div>
       ) : (
-        <Swiper
-          className="banner"
-          slidesPerView={1}
-          autoplay={{ delay: 4000 }}
-          navigation
-          pagination={{ clickable: true }}
-        >
-          {img.img?.map((img) => (
-            <SwiperSlide key={img.serialnum}>
-              <>
-                <img src={img.imageUrl} alt="sss" />
-              </>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        <>
+          {" "}
+          <Swiper
+            className="banner"
+            slidesPerView={1}
+            autoplay={{ delay: 4000 }}
+            navigation
+            pagination={{ clickable: true }}
+          >
+            {img.img?.map((img) => (
+              <SwiperSlide key={img.serialnum}>
+                <>
+                  <img src={img.imageUrl} alt="sss" />
+                </>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </>
       )}
     </ImageSlidestyled>
   );
