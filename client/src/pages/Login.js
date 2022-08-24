@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const LoginStyled = styled.div`
   display: flex;
@@ -34,44 +36,91 @@ const LoginStyled = styled.div`
       display: flex;
       flex-direction: column;
       gap: 1rem;
-      input,
-      button {
-        background-color: none;
-        height: 50px;
-        border: none;
-        border-bottom: 1px solid #000;
-        border-radius: 20px;
-        font-size: 1.1rem;
+      input {
+        width: 100%;
+        height: 40px;
+        background-color: white;
+        font-size: 20px;
+        margin-bottom: 5px;
+        border: 0;
+        border-radius: 5px;
+        padding: 3px;
+        box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, 0.28);
       }
       input {
         padding-left: 1rem;
-        background-color: rgb(255, 255, 230);
       }
-      button {
-        margin-top: 4.1rem;
-        color: white;
-        font-size: 1.3rem;
-        font-weight: bold;
-        background-color: rgb(34, 218, 173);
+      input:last-child {
         cursor: pointer;
+        width: 100%;
+        margin-top: 80px;
+        color: #fff;
+        height: 40px;
+        background-color: #0d6efd;
+        border: 0;
+        font-weight: 400;
+        text-align: center;
+        font-size: 20px;
+        border-radius: 0.25rem;
+        margin-top: 14px;
       }
     }
   }
 `;
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loginsuccess, setLoginsuccess] = useState(false);
+  const navigate = useNavigate();
+  const loginUser = async (e) => {
+    try {
+      e.preventDefault();
+      const response = await axios.post("http://localhost:3001/api/login", {
+        email,
+        password,
+      });
+      const data = await response.data;
+      console.log(data)
+      setLoginsuccess(true);
+    } catch (error) {
+      console.log(error);
+      alert("아이디와 비밀번호를 확인해주세요");
+    }
+  };
+
   return (
     <LoginStyled>
-      <div className="box">
-        <div className="menu">
-          <span>Sign In</span>
-        </div>
-        <div className="form">
-          <input placeholder="ID를 입력해주세요" />
-          <input placeholder="비밀번호를 입력해주세요" type="password" />
-          <button>로그인</button>
-        </div>
-      </div>
+      {loginsuccess ? (
+          <>
+          <div>환영해</div>
+          <div onClick={() => setLoginsuccess(false)}>로그아웃</div>
+          </>
+      ) : (
+        <>
+
+          <div className="box">
+            <div className="menu">
+              <span>Sign In</span>
+            </div>
+            <form onSubmit={loginUser} className="form">
+              <input
+                type="email"
+                value={email}
+                placeholder="Email을 입력해주세요"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <input
+                type="password"
+                value={password}
+                placeholder="비밀번호를 입력해주세요"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <input type="submit" value="로그인" />
+            </form>
+          </div>
+        </>
+      )}
     </LoginStyled>
   );
 };
