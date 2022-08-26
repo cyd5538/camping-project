@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const LoginStyled = styled.div`
   display: flex;
@@ -72,20 +71,23 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginsuccess, setLoginsuccess] = useState(false);
-  const navigate = useNavigate();
+
+  
   const loginUser = async (e) => {
+    e.preventDefault();
     try {
-      e.preventDefault();
       const response = await axios.post("http://localhost:3001/api/login", {
         email,
         password,
       });
-      const data = await response.data;
-      console.log(data)
-      setLoginsuccess(true);
+      const data = await response.data;    
+      if(data.status === "success"){
+        setLoginsuccess(true);
+      }else{
+        alert("아이디와 비밀번호를 확인해주세요.")
+      }
     } catch (error) {
       console.log(error);
-      alert("아이디와 비밀번호를 확인해주세요");
     }
   };
 
