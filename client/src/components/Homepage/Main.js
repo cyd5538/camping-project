@@ -19,9 +19,8 @@ const MainStyled = styled.div`
     width: 100%;
     height: 100vh;
     object-fit: cover;
-    filter: brightness(45%);
-    -webkit-filter: brightness(45%);
-    -moz-filter: brightness(45%);
+    filter: brightness(65%);
+
   }
   .spin {
     width: 100%;
