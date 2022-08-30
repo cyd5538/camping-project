@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 
@@ -65,13 +65,23 @@ const LoginStyled = styled.div`
       }
     }
   }
+
+  .login_on{
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+  }
 `;
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginsuccess, setLoginsuccess] = useState(false);
-
+  const [logindata, setLogindata] = useState([])
+  const [userdata, setUserdata] = useState([]);
   
   const loginUser = async (e) => {
     e.preventDefault();
@@ -80,9 +90,13 @@ const Login = () => {
         email,
         password,
       });
-      const data = await response.data;    
-      if(data.status === "success"){
+      setLogindata(response.data)
+      console.log(logindata)
+      
+      if(logindata.status === "success"){
         setLoginsuccess(true);
+        document.cookie = `access_token = ${logindata.access_token}`
+       
       }else{
         alert("아이디와 비밀번호를 확인해주세요.")
       }
@@ -91,16 +105,31 @@ const Login = () => {
     }
   };
 
+  const getUserData = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3001/api/user/${email}`)
+      setUserdata(response.data)
+      console.log(userdata)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    if(document.cookie.indexOf('access_token') > 1){
+      setLoginsuccess(true);
+    }
+  },[])
+
   return (
     <LoginStyled>
       {loginsuccess ? (
-          <>
-          <div>환영해</div>
-          <div onClick={() => setLoginsuccess(false)}>로그아웃</div>
-          </>
+          <div className="login_on">
+            <div>환영합니다 {userdata[0]?.name}</div>
+            <div onClick={() => setLoginsuccess(false)}>로그아웃</div>
+          </div>
       ) : (
         <>
-
           <div className="box">
             <div className="menu">
               <span>Sign In</span>

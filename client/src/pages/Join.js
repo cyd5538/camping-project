@@ -133,7 +133,7 @@ const Join = () => {
           <span>Sign Up</span>
         </div>
         <form onSubmit={handleSubmit(registerUser)} className="form">
-          <label>ID</label>
+          <label>Name</label>
           <input
             type="text"
             placeholder="id를 입력하세요"

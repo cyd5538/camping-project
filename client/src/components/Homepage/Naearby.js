@@ -111,7 +111,7 @@ const Naearby = () => {
   SwiperCore.use([Autoplay, Navigation]);
 
   return (
-    <NearbyStyle>
+    <NearbyStyle id="near">
       <div className="sub_title">가까운 곳을 원한다면 !</div>
       <h2>내 근처 캠핑장! ⭐20Km 이내⭐</h2>
       <Swiper
