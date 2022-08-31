@@ -1,9 +1,14 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const {getComments,setComment,updateComment,deleteComment} = require('../controller/commentController')
+const {
+  getComments,
+  setComment,
+  updateComment,
+  deleteComment,
+} = require("../controller/commentController");
+const { protect } = require("../middlewear/authMiddlewear");
 
-router.route('/').get(getComments).post(setComment)
-router.route('/:id').put(updateComment).delete(deleteComment)
+router.route("/").get(protect, getComments).post(protect, setComment);
+router.route("/:id").put(protect, updateComment).delete(protect, deleteComment);
 
- 
-module.exports = router
+module.exports = router;
